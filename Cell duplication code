@@ -1,0 +1,46 @@
+def read_xyz_file(filename):
+    with open(filename, 'r') as f:
+        lines = f.readlines()
+
+    num_atoms = int(lines[0].strip())
+    atoms = []
+    for line in lines[2:]:
+        atom_data = line.split()
+        atom = (atom_data[0], float(atom_data[1]), float(atom_data[2]), float(atom_data[3]))
+        atoms.append(atom)
+
+    return num_atoms, atoms
+
+
+def write_xyz_file(filename, num_atoms, atoms):
+    with open(filename, 'w') as f:
+        f.write(str(num_atoms) + '\n')
+        f.write('\n')
+        for atom in atoms:
+            f.write('{} {} {} {}\n'.format(atom[0], atom[1], atom[2], atom[3]))
+
+
+def duplicate_unit_cell(filename, num_replications):
+    num_atoms, atoms = read_xyz_file(filename)
+    duplicated_atoms = []
+
+    for i in range(-num_replications, num_replications + 1):
+        for j in range(-num_replications, num_replications + 1):
+            for k in range(-num_replications, num_replications + 1):
+                for atom in atoms:
+                    duplicated_atom = (atom[0],
+                                       atom[1] + i * cell_length,
+                                       atom[2] + j * cell_length,
+                                       atom[3] + k * cell_length)
+                    duplicated_atoms.append(duplicated_atom)
+
+    num_duplicated_atoms = len(duplicated_atoms)
+    write_xyz_file('duplicated_cell.xyz', num_duplicated_atoms, duplicated_atoms)
+
+
+# Example usage:
+filename = "file path"  
+cell_length = 10  # Replace with the length of your unit cell
+
+num_replications = 1  # Number of unit cell replications in all directions
+duplicate_unit_cell(filename, num_replications)
