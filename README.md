@@ -1,8 +1,4 @@
-- 👋 Hi, I’m @snehithavchem
-- 👀 I’m interested in Computational Materials Science
-- 🌱 I’m currently learning python and other necessary tools. 
-- 💞️ I’m looking to collaborate on computational materials science projects. 
-- 📫 How to reach me mail me at snehithav.che@gmail.com
+- 👋 Hi, I’m Snehith
 
 <!---
 snehithavchem/snehithavchem is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
